@@ -3,5 +3,4 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared\wtypes.h(761,
 C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\QDClib\QDClib.cpp(14,1): message : consulte a definição anterior de 'VARIANT_TRUE'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared\wtypes.h(762,1): warning C4005: 'VARIANT_FALSE': redefinição de macro
 C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\QDClib\QDClib.cpp(15,1): message : consulte a definição anterior de 'VARIANT_FALSE'
-     Criando biblioteca C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\x64\Debug\QDClib.lib e objeto C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\x64\Debug\QDClib.exp
   QDClib.vcxproj -> C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\x64\Debug\QDClib.dll

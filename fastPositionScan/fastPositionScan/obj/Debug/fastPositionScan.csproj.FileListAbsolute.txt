@@ -6,11 +6,6 @@ C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPosi
 C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.csproj.CoreCompileInputs.cache
 C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.exe
 C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.pdb
-C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\Thorlabs.MotionControl.DeviceManagerCLI.dll
-C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\Thorlabs.MotionControl.GenericMotorCLI.dll
-C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\Thorlabs.MotionControl.KCube.DCServoCLI.dll
 C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\Thorlabs.MotionControl.PrivateInternal.dll
-C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\Thorlabs.MotionControl.Tools.Common.dll
-C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\Thorlabs.MotionControl.Tools.Logging.dll
 C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\Thorlabs.MotionControl.Tools.WPF.dll
 C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.csproj.CopyComplete

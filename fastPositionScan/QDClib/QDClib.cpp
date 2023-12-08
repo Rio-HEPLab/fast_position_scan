@@ -222,7 +222,7 @@ int QDC_Read(int numeroCiclos) {
 				printf("Event Num. %d\n", buffer[pnt] & 0xFFFFFF);
 				//printa apenas o canal 0
 				if (ADCdata[0] != 0xFFFF) {
-					printf("Ch %2d: %d\n", 0, ADCdata[0]);
+					//printf("Ch %2d: %d\n", 0, ADCdata[0]);
 					sum = sum + ADCdata[0];
 					evtcount++;
 				}

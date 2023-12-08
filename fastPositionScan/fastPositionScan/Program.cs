@@ -241,6 +241,9 @@ namespace fastPositionScan
             ServoX.MoveTo(initialPositionX, 60000);
             ServoY.MoveTo(initialPositionY, 60000);
 
+            //Move relativo a posição inicial
+            Console.WriteLine("Scan in execution...");
+
             for (int i = 0; i < numStepsY + 1; i++)
             {
                 PositionY = i * stepY;
@@ -254,6 +257,10 @@ namespace fastPositionScan
                     vetorPosicaoX.Add(PositionX);
                     vetorPosicaoY.Add(PositionY);
 
+                    Console.WriteLine("Carga: " + carga);
+                    Console.WriteLine("Posicao X: " + PositionX);
+                    Console.WriteLine("Posicao Y: " + PositionY);
+
                     ServoX.MoveRelative(MotorDirection.Forward, stepX, 60000);
                 }
 
@@ -262,8 +269,6 @@ namespace fastPositionScan
                 
             }
 
-            //Move relativo a posição inicial
-            Console.WriteLine("Scan in execution...");
 
             //ENCERRA O PROGRAMA
             Console.WriteLine("Press any key to exit");
