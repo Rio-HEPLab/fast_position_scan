@@ -77,6 +77,12 @@ namespace fastPositionScan
 
             int medicoesCarga = 100;
             int carga = 0;
+            decimal PositionX = 0;
+            decimal PositionY = 0;
+
+            List<int>vetorCarga = new List<int>();
+            List<decimal>vetorPosicaoX = new List<decimal>();
+            List<decimal>vetorPosicaoY = new List<decimal>();
 
 
 
@@ -237,17 +243,23 @@ namespace fastPositionScan
 
             for (int i = 0; i < numStepsY + 1; i++)
             {
+                PositionY = i * stepY;
+
                 for (int j = 0; j < numStepsX; j++)
                 {
+                    carga = QDC.Read(medicoesCarga);
+                    PositionX = j* stepX;
+
+                    vetorCarga.Add(carga);
+                    vetorPosicaoX.Add(PositionX);
+                    vetorPosicaoY.Add(PositionY);
+
                     ServoX.MoveRelative(MotorDirection.Forward, stepX, 60000);
                 }
-                ServoX.MoveTo(initialPositionX, 60000);
 
-                //não da um passo a mais após ter concluido o scan
-                if (i < numStepsX)
-                {
-                    ServoY.MoveRelative(MotorDirection.Forward, stepY, 60000);
-                }
+                ServoX.MoveTo(initialPositionX, 60000);
+                ServoY.MoveRelative(MotorDirection.Forward, stepY, 60000);
+                
             }
 
             //Move relativo a posição inicial
@@ -263,6 +275,9 @@ namespace fastPositionScan
             // This shuts down the controller. This will use the Disconnect() function to close communications &will then close the used library.
             ServoY.ShutDown();
             ServoX.ShutDown();
+
+            //encerra o QDC
+            QDC.End();
         }
     }
 }
