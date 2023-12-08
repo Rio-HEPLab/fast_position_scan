@@ -1,0 +1,8 @@
+C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\fastPositionScan.exe.config
+C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\fastPositionScan.exe
+C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\bin\Debug\fastPositionScan.pdb
+C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.csproj.AssemblyReference.cache
+C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.csproj.SuggestedBindingRedirects.cache
+C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.csproj.CoreCompileInputs.cache
+C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.exe
+C:\Users\vinif\Desktop\PIBIC\Github\fast_position_scan\fastPositionScan\fastPositionScan\obj\Debug\fastPositionScan.pdb
