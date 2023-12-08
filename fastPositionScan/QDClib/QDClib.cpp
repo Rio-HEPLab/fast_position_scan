@@ -20,14 +20,6 @@ typedef short VARIANT_BOOL;
 #include <CAENVMEoslib.h>
 #include <CAENVMEtypes.h>
 
-
-
-// Função de teste
-extern "C" QDCEXPORT void helloWorld();
-
-// Função de teste
-extern "C" QDCEXPORT int add(int, int);
-
 // Inicializa o dispositivo ou retorna uma mensagem de erro
 extern "C" QDCEXPORT void QDC_Init();
 
@@ -35,12 +27,7 @@ extern "C" QDCEXPORT void QDC_Init();
 extern "C" QDCEXPORT void QDC_End();
 
 // Leitura
-extern "C" QDCEXPORT int Read(int a);
-
-// Realiza leitura do registrador
-extern "C" QDCEXPORT int QDC_Read();
-
-
+extern "C" QDCEXPORT int QDC_Read(int a);
 
 
 #define MAX_BLT_SIZE		(256*1024)
@@ -137,132 +124,7 @@ void QDC_End() {
 	}
 }
 
-
-int QDC_Read() {
-	int sum = 0;	//VALOR DA SOMA DOS EVENTOS
-
-	int pnt = 0;  // word pointer
-	int wcnt = 0; // num of lword read in the MBLT cycle
-	int totnb = 0;
-	uint32_t buffer[MAX_BLT_SIZE / 4];// readout buffer (raw data from the board)
-	buffer[0] = DATATYPE_FILLER;
-	int DataType = DATATYPE_HEADER;
-	int DataError = 0;
-	uint16_t ADCdata[32];			// ADC data (charge, peak or TAC)
-	int nch = 0, chindex = 0, nev = 0, j, ns[32], bcnt;
-	long CurrentTime, PrevPlotTime, ElapsedTime;	// time of the PC
-
-	// clear Event Counter
-	write_reg(0x1040, 0x0);
-	// clear QTP
-	write_reg(0x1032, 0x4);
-	write_reg(0x1034, 0x4);
-
-	PrevPlotTime = get_time();
-
-	//int quit = 0;
-	//while (!quit) {
-	int evtcount = 0;
-	while (evtcount < 1000) {
-
-		CurrentTime = get_time(); // Time in milliseconds
-
-		// Log statistics on the screen and plot histograms
-		ElapsedTime = CurrentTime - PrevPlotTime;
-		if (ElapsedTime > 1000) {
-			//ClearScreen();
-			nev = 0;
-			totnb = 0;
-			printf("Aguarde\n");
-			PrevPlotTime = CurrentTime;
-		}
-
-		// if needed, read a new block of data from the board 
-		if ((pnt == wcnt) || ((buffer[pnt] & DATATYPE_MASK) == DATATYPE_FILLER)) {
-			CAENVME_FIFOMBLTReadCycle(handle, BaseAddress, (char*)buffer, MAX_BLT_SIZE, cvA32_U_MBLT, &bcnt);
-			wcnt = bcnt / 4;
-			totnb += bcnt;
-			pnt = 0;
-		}
-		if (wcnt == 0)  // no data available
-			continue;
-
-		// header 
-		switch (DataType) {
-		case DATATYPE_HEADER:
-			if ((buffer[pnt] & DATATYPE_MASK) != DATATYPE_HEADER) {
-				//printf("Header not found: %08X (pnt=%d)\n", buffer[pnt], pnt);
-				DataError = 1;
-			}
-			else {
-				nch = (buffer[pnt] >> 8) & 0x3F;
-				chindex = 0;
-				nev++;
-				memset(ADCdata, 0xFFFF, 32 * sizeof(uint16_t));
-				if (nch > 0)
-					DataType = DATATYPE_CHDATA;
-				else
-					DataType = DATATYPE_EOB;
-			}
-			break;
-
-			// Channel data 
-		case DATATYPE_CHDATA:
-			if ((buffer[pnt] & DATATYPE_MASK) != DATATYPE_CHDATA) {
-				//printf("Wrong Channel Data: %08X (pnt=%d)\n", buffer[pnt], pnt);
-				DataError = 1;
-			}
-			else {
-				if (brd_nch == 32)
-					j = (int)((buffer[pnt] >> 16) & 0x3F);  // for V792 (32 channels)
-				else
-					j = (int)((buffer[pnt] >> 17) & 0x3F);  // for V792N (16 channels)
-				ADCdata[j] = buffer[pnt] & 0xFFF;
-				ns[j]++;
-				if (chindex == (nch - 1))
-					DataType = DATATYPE_EOB;
-				chindex++;
-			}
-			break;
-
-			// EOB 
-		case DATATYPE_EOB:
-			if ((buffer[pnt] & DATATYPE_MASK) != DATATYPE_EOB) {
-				//printf("EOB not found: %08X (pnt=%d)\n", buffer[pnt], pnt);
-				DataError = 1;
-			}
-			else {
-				DataType = DATATYPE_HEADER;
-				//printf("Event Num. %d\n", buffer[pnt] & 0xFFFFFF);
-				//printa apenas o canal 0
-				if (ADCdata[0] != 0xFFFF) {
-					//printf("Ch %2d: %d\n", 0, ADCdata[0]);
-					sum = sum + ADCdata[0];
-					evtcount++;
-				}
-				//printa todos os canais
-				/* for(i=0; i<32; i++) {
-					if (ADCdata[i] != 0xFFFF)
-						printf("Ch %2d: %d\n", i, ADCdata[i]);
-				} */
-			}
-			break;
-		}
-		pnt++;
-
-		if (DataError) {
-			pnt = wcnt;
-			write_reg(0x1032, 0x4);
-			write_reg(0x1034, 0x4);
-			DataType = DATATYPE_HEADER;
-			DataError = 0;
-		}
-	}
-
-	return (sum / 1000);
-}
-
-int Read(int numeroCiclos) {
+int QDC_Read(int numeroCiclos) {
 	int sum = 0;	//VALOR DA SOMA DOS EVENTOS
 
 	int pnt = 0;  // word pointer
@@ -387,12 +249,4 @@ int Read(int numeroCiclos) {
 	return sum;
 	//printf("Carga média: %d", sum);
 	//printf("Ciclos: %d", evtcount);
-}
-
-void helloWorld() {
-	printf("Hello World");
-}
-
-int add(int a, int b) {
-	return a + b;
 }

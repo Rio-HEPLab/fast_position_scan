@@ -1,25 +1,17 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace fastPositionScan
 {
     internal class QDC
     {
-        [DllImport("QDClibrary.dll")]
-        public static extern void helloWorld();
+        [DllImport("QDClib.dll", EntryPoint = "QDC_Init")]
+        public static extern void Init();
 
-        [DllImport("QDClibrary.dll")]
-        public static extern int add(int a, int b);
+        [DllImport("QDClib.dll", EntryPoint = "QDC_End")]
+        public static extern void End();
 
-        [DllImport("QDClibrary.dll")]
-        public static extern void QDC_Init();
-
-        [DllImport("QDClibrary.dll")]
-        public static extern void QDC_End();
-
-        [DllImport("QDClibrary.dll")]
-        public static extern int QDC_Read();
-
-        [DllImport("QDClibrary.dll")]
+        [DllImport("QDClib.dll", EntryPoint = "QDC_Read")]
         public static extern int Read(int numeroCiclos);
     }
 }
